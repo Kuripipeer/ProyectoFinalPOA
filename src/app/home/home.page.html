@@ -1,20 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>Configuraciones</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-content class="ion-padding">
+    <ion-label style="padding-right: 0.5rem"
+      >Sincronizar con datos móviles</ion-label
+    >
+    <ion-toggle
+      [checked]="syncOnMobileData"
+      (ionChange)="toggleSyncOnMobileData($event)"
+    ></ion-toggle>
+    <ion-button size="small" style="padding-top: 1rem" (click)="syncData()">
+      Sincronizar Datos
+      <ion-icon
+        style="padding-left: 0.5rem"
+        name="cloud-upload-outline"
+      ></ion-icon>
+    </ion-button>
+  </ion-content>
+</ion-menu>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+<!-- Página principal -->
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Encabezado</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-button>
+          <ion-icon name="settings-outline"></ion-icon>
+        </ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-header *ngIf="showHeader">
+      <ion-toolbar [ngClass]="headerClass">
+        <ion-title>{{ connectionStatus }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  </ion-header>
+  <ion-content class="ion-padding">
+    Tap the button in the toolbar to open the menu.
+  </ion-content>
+</div>
